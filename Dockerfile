@@ -26,8 +26,10 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo 'deb http://ftp.us.debian.org/debian stretch main' >> /etc/apt/sources.list
-RUN apt-get install -y sdcc=3.5.0
+RUN echo 'deb http://ftp.debian.org/debian stretch main' >> /etc/apt/sources.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
+    04EE7237B7D453EC 648ACFD622F3D138 0E98404D386FA1D9 EF0F382A1A7B6500
+RUN apt-get update && apt-get install -y -t stretch sdcc=3.5.0+dfsg-2+b1
 RUN pip3 install capablerobot_usbhub
 
 USER jenkins
