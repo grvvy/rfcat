@@ -1,5 +1,5 @@
 # Use the official image as a parent image
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Add Jenkins as a user with sufficient permissions
 RUN mkdir /home/jenkins
@@ -13,6 +13,8 @@ CMD ["/bin/bash"]
 
 # override interactive installations
 ENV DEBIAN_FRONTEND=noninteractive 
+
+RUN echo 'deb http://ftp.us.debian.org/debian stretch main' >> /etc/apt/sources.list
 
 # Install prerequisites
 RUN apt-get update && apt-get install -y \
