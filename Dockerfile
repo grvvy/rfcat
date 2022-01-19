@@ -14,8 +14,6 @@ CMD ["/bin/bash"]
 # override interactive installations
 ENV DEBIAN_FRONTEND=noninteractive 
 
-RUN echo 'deb http://ftp.us.debian.org/debian stretch main' >> /etc/apt/sources.list
-
 # Install prerequisites
 RUN apt-get update && apt-get install -y \
     libusb-1.0-0 \
@@ -26,9 +24,10 @@ RUN apt-get update && apt-get install -y \
     python-usb \
     python3-pip \
     python3-venv \
-    sdcc=3.5.0 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN echo 'deb http://ftp.us.debian.org/debian stretch main' >> /etc/apt/sources.list
+RUN apt-get install -y sdcc=3.5.0
 RUN pip3 install capablerobot_usbhub
 
 USER jenkins
