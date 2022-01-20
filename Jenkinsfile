@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         dockerfile {
-            args '--group-add=20 --privileged -v /dev/bus/usb:/dev/bus/usb'
+            args '--group-add=20 --privileged -v /dev/:/dev/'
         }
     }
     options {
