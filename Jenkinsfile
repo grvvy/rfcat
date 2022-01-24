@@ -36,7 +36,7 @@ pipeline {
     post {
         always {
             // Clean after build
-            sh 'usbhub power state --port 1 --reset'
+            sh 'usbhub --hub 624C power state --port 1 --reset'
             cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,
                     disableDeferredWipeout: true,
