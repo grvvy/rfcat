@@ -23,6 +23,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh './ci-scripts/configure-hubs.sh --off'
                 sh './ci-scripts/test-hub.sh'
                 retry(3) {
                     sh './ci-scripts/test-firmware.sh'
@@ -36,7 +37,7 @@ pipeline {
     post {
         always {
             // Clean after build
-            sh 'usbhub --hub 624C power state --port 1 --reset'
+            sh './ci-scripts/configure-hubs.sh --reset'
             cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,
                     disableDeferredWipeout: true,
