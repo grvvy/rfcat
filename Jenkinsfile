@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         dockerfile {
-            args '--group-add=20 --privileged -v /dev/:/dev/'
+            args '--group-add=20 --privileged -v /dev/RFCAT_BL_YS1:/dev/RFCAT_BL_YS1'
         }
     }
     options {
