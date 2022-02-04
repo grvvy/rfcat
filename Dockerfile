@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y -t stretch sdcc=3.5.0+dfsg-2+b1
 RUN pip install future
 RUN pip3 install capablerobot_usbhub
 
+RUN sysctl kernel.dmesg_restrict=0
+
 USER jenkins
 
 # Inform Docker that the container is listening on the specified port at runtime.
