@@ -4,13 +4,6 @@ pipeline {
             args '--group-add=20 --privileged -v /dev/RFCAT_BL_YS1:/dev/RFCAT_BL_YS1'
         }
     }
-    options {
-        throttleJobProperty(
-            categories: ['single-build-throttle'],
-            throttleEnabled: true,
-            throttleOption: 'category'
-        )
-    }
     environment {
         GIT_COMMITER_NAME = 'CI Person'
         GIT_COMMITER_EMAIL = 'ci@greatscottgadgets.com'
