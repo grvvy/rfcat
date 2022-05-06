@@ -2,6 +2,10 @@
 FROM ubuntu:20.04
 CMD ["/bin/bash"]
 
+# add user with uid:gid 1000:1000 to match host system
+RUN groupadd -g 1000 jenkins
+RUN useradd -r -u 1000 -g 1000 -d /var/jenkins_home jenkins
+
 # Override interactive installations and install prerequisites
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && apt-get install -y \
