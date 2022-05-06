@@ -5,6 +5,7 @@ CMD ["/bin/bash"]
 # Override interactive installations and install prerequisites
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && apt-get install -y \
+    git \
     libusb-1.0-0 \
     make \
     python2 \
