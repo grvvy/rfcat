@@ -16,7 +16,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './ci-scripts/configure-hubs.sh --off'
                 retry(3) {
                     sh './ci-scripts/test-firmware.sh'
                 }
