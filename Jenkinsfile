@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         dockerfile {
-            args '--group-add=20 --privileged -v /dev/RFCAT_BL_YS1:/dev/RFCAT_BL_YS1'
+            args '--group-add=20 --device-cgroup-rule="c 189:* rmw" -v /dev/bus/usb:/dev/bus/usb --device-cgroup-rule="c 166:* rmw" -v /dev/rfcat:/dev/rfcat'
         }
     }
     environment {
@@ -17,7 +17,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh './ci-scripts/configure-hubs.sh --off'
-                sh './ci-scripts/test-hub.sh'
                 retry(3) {
                     sh './ci-scripts/test-firmware.sh'
                 }
