@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         dockerfile {
-            args '--group-add=20 --device-cgroup-rule="c 189:* rmw" -v /dev/bus/usb:/dev/bus/usb --device-cgroup-rule="c 166:* rmw" -v /dev/rfcat:/dev/rfcat'
+            args '--name rfcat_sandbox --group-add=20 --device-cgroup-rule="c 189:* rmw" -v /dev/bus/usb:/dev/bus/usb --device-cgroup-rule="c 166:* rmw"'
         }
     }
     environment {
