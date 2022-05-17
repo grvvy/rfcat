@@ -17,11 +17,6 @@ pipeline {
         stage('Test') {
             steps {
                 retry(3) {
-                    sh 'ls /sys/class/'
-                    sh 'ls /sys/class/tty/'
-                    sh 'ls -l /dev/'
-                    sh 'ls -l /dev/rfcat/'
-                    sh 'tail -f /dev/null'
                     sh './ci-scripts/test-firmware.sh'
                 }
                 retry(3) {
