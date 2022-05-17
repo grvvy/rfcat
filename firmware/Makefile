@@ -377,10 +377,10 @@ installRfCatYS1: RfCatYS1.hex
 	goodfet.cc info
 
 installRfCatYS1CCBootloader: RfCatYS1CCBootloader.hex
-	if [ ! -c /dev/rfcat/RFCAT_BL_YS1 ] ; then ../rfcat --bootloader --force -S && sleep 1 ; fi ;
-	rfcat_bootloader /dev/rfcat/RFCAT_BL_YS1 erase_all
-	rfcat_bootloader /dev/rfcat/RFCAT_BL_YS1 download bins/RfCatYS1CCBootloader.hex
-	rfcat_bootloader /dev/rfcat/RFCAT_BL_YS1 verify bins/RfCatYS1CCBootloader.hex && rfcat_bootloader /dev/rfcat/RFCAT_BL_YS1 run
+	if [ ! -c /dev/RFCAT_BL_YS1 ] ; then ../rfcat --bootloader --force -S && sleep 1 ; fi ;
+	rfcat_bootloader /dev/RFCAT_BL_YS1 erase_all
+	rfcat_bootloader /dev/RFCAT_BL_YS1 download bins/RfCatYS1CCBootloader.hex
+	rfcat_bootloader /dev/RFCAT_BL_YS1 verify bins/RfCatYS1CCBootloader.hex && rfcat_bootloader /dev/RFCAT_BL_YS1 run
 
 installimmesnifffw: immeSniff
 	goodfet.cc erase
