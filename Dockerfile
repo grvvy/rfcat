@@ -25,9 +25,20 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
     04EE7237B7D453EC 648ACFD622F3D138 0E98404D386FA1D9 EF0F382A1A7B6500
 RUN apt-get update && apt-get install -y -t stretch sdcc=3.5.0+dfsg-2+b1
 RUN pip install future
-RUN pip3 install git+https://github.com/CapableRobot/CapableRobot_USBHub_Driver --upgrade
+RUN pip3 install pyserial git+https://github.com/CapableRobot/CapableRobot_USBHub_Driver --upgrade
 
+#TODO: what was this?
 RUN sysctl kernel.dmesg_restrict=0
+
+# create necessary device nodes for connected YS1
+# # TODO: this actually should probably happen inside a running container instead
+# RUN mknod /dev/ttyACM0 c 166 0 \
+#     && mknod /dev/ttyACM1 c 166 1 \
+#     && mknod /dev/ttyACM2 c 166 2 \
+#     && mknod /dev/ttyACM3 c 166 3
+
+COPY /ci-scripts/acm-handler.sh /startup/acm-handler.sh
+RUN /bin/bash /startup/acm-handler.sh
 
 # Inform Docker that the container is listening on port 8080 at runtime
 EXPOSE 8080
