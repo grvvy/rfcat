@@ -29,8 +29,5 @@ RUN pip3 install pyserial git+https://github.com/CapableRobot/CapableRobot_USBHu
 
 RUN sysctl kernel.dmesg_restrict=0
 
-COPY /ci-scripts/acm-handler.sh /startup/acm-handler.sh
-RUN /bin/bash /startup/acm-handler.sh
-
 # Inform Docker that the container is listening on port 8080 at runtime
 EXPOSE 8080
